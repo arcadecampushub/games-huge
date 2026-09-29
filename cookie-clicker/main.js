@@ -13676,7 +13676,7 @@ window.onload=function()
 	
 	if (!Game.ready)
 	{
-		if (top!=self) Game.ErrorFrame();
+		if (false) Game.ErrorFrame(); /* played inside the hub's frame */
 		else
 		{
 			console.log('[=== '+choose([
