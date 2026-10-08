@@ -16,7 +16,7 @@ var ObjectStorage = (function() {
                             }));
           },
       load : function(key) { return JSON.parse(_s.getItem(key)); },
-      clear : function() { _s.clear(); }
+      clear : function() { Object.keys(_s).forEach(function(k) { if (/^(lab|saveVersion|research-|workers-|upgrade-|achievement-)/.test(k)) _s.removeItem(k); }); }
     };
   } catch (e) {
     alert('There is no local storage for you.' +

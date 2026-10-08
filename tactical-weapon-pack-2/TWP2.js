@@ -5968,7 +5968,7 @@ var TWP2;
     };
     Engine.prototype.clearPlayerData = function () {
       console.log("Clear player data");
-      localStorage.clear();
+      localStorage.removeItem("xwilkinx_twp2_player");
     };
     Engine.STATE_BOOT = "BootState";
     Engine.STATE_PRELOADER = "PreloaderState";
