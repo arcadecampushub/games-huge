@@ -1,74 +1,37 @@
-
 <!DOCTYPE html>
-<html lang="en"><head>
-	<link href="../css/waflash.css" rel="stylesheet" type="text/css">
-	<title>Papa's Pancakeria - Bigfoot's Game Shack</title>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Papa's Pancakeria - Bigfoot's Game Shack</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Played with Ruffle. The WAFlash player this page used to import is no
+     longer served (its jsDelivr account was blocked), so the game never started. -->
+<style>
+html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+ruffle-player { display: block; width: 100%; height: 100%; }
+</style>
 </head>
-<body dir="ltr">
+<body>
 <script>
-		var gameConfig = {
-			swfUrl: 'swf/papaspancakeria.swf'
-		}
+  var gameConfig = { swfUrl: 'swf/papaspancakeria.swf' };
 </script>
-<div id="waflashContainer">
-<canvas class="waflashCanvas" id="canvas" tabindex="1"></canvas>
-<div id="waflashStatus" style="display: none;">Playing...</div>
+<script src="https://cdn.jsdelivr.net/npm/@ruffle-rs/ruffle@latest/ruffle.js"></script>
 <script>
-		var ua = navigator.userAgent.toLowerCase();
-		if ( (navigator.appName =='Netscape' && ua.indexOf('trident') != -1) || (ua.indexOf("msie") != -1)) {
-    		var waf = document.getElementById('waflashStatus');
-			waf.style.display ='block';
-			waf.innerText ='??? ?????(IE) ??? ??? ???? ???? !\n??, ???? ?? ????? ??????.';
-			gtag('event', 'connect_from_ie', {'event_category': 'error', 'event_label': ua });
-		}
-	</script>
-<script crossorigin="anonymous" type="module">
-		let is_mobile = /Mobi/i.test(window.navigator.userAgent);
-		if (is_mobile) {
-			function scrollToSubject() {
-				try {
-					window.scrollTo({
-						top: 100,
-						left: 0,
-						behavior: 'smooth'
-					});
-				} catch (e) {}
-			}
-			scrollToSubject();
-			window.addEventListener("orientationchange", function() {
-				setTimeout(scrollToSubject, 100);
-			});
-		} else {
-			document.getElementById('canvas').focus();
-		}
-		document.getElementById('canvas').addEventListener("keydown", function(ev) {
-			ev.preventDefault();
-			ev.stopPropagation();
-		});
-		document.getElementById('canvas').addEventListener("click", function() {
-			document.getElementById('canvas').focus();
-		});
-		document.addEventListener("mousedown", (function() {
-			const canvasElement = document.getElementById('canvas');
-			let focused = false;
-			return function(ev) {
-				if (ev.target == canvasElement) {
-					if (!focused) {
-						canvasElement.focus();
-						focused = true;
-					}
-				} else {
-					if (focused) {
-						focused = false;
-					}
-				}
-				return true;
-			}
-		})());
-		import {
-			createWaflash
-		} from 'https://cdn.jsdelivr.net/gh/AndreajnRcm4/b398dl2h74v@3f0db6b9a0bed7641e3ed167fc07070b891b72fb/js/waflash-player.min.js';
-		createWaflash(gameConfig.swfUrl, window.wafOptions || {});
-	</script>
-</div>
-</body></html>
+  (function () {
+    var player = window.RufflePlayer.newest().createPlayer();
+    document.body.appendChild(player);
+    player.load({
+      url: gameConfig.swfUrl,
+      autoplay: "on",
+      unmuteOverlay: "visible",
+      letterbox: "on",
+      scale: "showAll",
+      splashScreen: false,
+      contextMenu: "off",
+      favorLocalstorage: true
+    });
+    setTimeout(function () { try { player.focus(); } catch (e) {} }, 300);
+  })();
+</script>
+</body>
+</html>
